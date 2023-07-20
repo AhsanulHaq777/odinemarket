@@ -13,7 +13,7 @@ function urlFor(source: File | SanityImageSource) {
 }
 // to fetch data from sanity
 export const getProducts = async()=>{
-  const response = await client.fetch(`*[_type=='product']{title,description,price,image,category -> {title}}`);
+  const response = await client.fetch(`*[_type=='product']{_id,title,description,price,image,category -> {title}}`);
   return response;
 }
 
@@ -110,7 +110,7 @@ export default async function Home() {
         </div>
         <div className=" flex flex-row gap-11 px-6 mt-20 mb-16">
             {productsData.map((item)=>(
-              <div>
+              <div key={item._id}>
                 <Image src={urlFor(item.image).url()} width='500' height='500' alt="products" />
                 {/* <Image src='https://cdn.sanity.io/images/czlfkjkf/production/ffc858fc182553bee2aaff34fe728bf07d15f2b5-278x296.png?w=700' width='600' height='600' alt="products" /> */}
                 <h2 className="text-gray-700 text-2xl font-extrabold font-mono mt-3">{item.title}</h2>
