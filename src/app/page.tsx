@@ -12,7 +12,7 @@ function urlFor(source: File | SanityImageSource) {
   return builder.image(source)
 }
 // to fetch data from sanity
-export const getProducts = async()=>{
+const getProducts = async()=>{
   const response = await client.fetch(`*[_type=='product']{_id,title,description,price,image,category -> {title}}`);
   return response;
 }
