@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { Input } from "@/components/ui/input"
-import {CiSearch} from "react-icons/ci"
-import {FiShoppingCart} from "react-icons/fi"
+import { Search, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 
@@ -23,9 +22,9 @@ export default function Header() {
             </ul>
         </div>
         <div className='flex flex-row items-center w-96'>
-          <CiSearch/><Input type="text" className='h-[30px]' placeholder="What you looking for" />
+          <Search/><Input type="text" className='h-[30px]' placeholder="What you looking for" />
         </div>
-        <div><Button variant="secondary" className=' rounded-full font-bold text-xl'><FiShoppingCart/></Button></div>
+        <div><Button variant="secondary" className=' rounded-full font-bold text-xl'><ShoppingCart/></Button></div>
     </div>
   )
 }
