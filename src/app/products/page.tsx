@@ -34,8 +34,8 @@ export default async function page() {
     <div className=" flex flex-row gap-[85px] mt-20 mb-36">
           {productsData.length > 0 ? 
           (productsData.map((item)=>(
-            <Link href={`/products/${item.title}`}>
-             <div key={item._id}>
+            <Link href={`/products/${item.title}`}  key={item._id}>
+             <div>
                 <Image src={urlFor(item.image).url()} width='280' height='280' alt={item.title} />
                   {/* <Image src='https://cdn.sanity.io/images/czlfkjkf/production/ffc858fc182553bee2aaff34fe728bf07d15f2b5-278x296.png?w=700' width='600' height='600' alt="products" /> */}
                   <h2 className="text-gray-700 text-xl font-extrabold font-mono mt-3">{item.title}</h2>
