@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
+import Hero_Image from "../../public/header.webp"
 import { Input } from "@/components/ui/input"
 import {client} from '@/lib/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
@@ -36,8 +37,8 @@ export default async function Home() {
   const productsData:IProduct[] = await getProducts();
   return (
     <>
-      <div className='flex flex-row m-auto justify-around gap-10 px-36' >
-        <div className="mt-14">
+      <div className='flex flex-row m-auto gap-10 px-36' >
+        <div className="mt-14 w-full">
           <Button variant="secondary" className=" bg-blue-100 w-32 text-indigo-700 font-mono text-xl font-extrabold">Sale 70%</Button>
           <h1 className="text-4xl mt-10 font-extrabold lg:text-6xl tracking-wide">
             An Industrial Take on Streetwear
@@ -57,9 +58,9 @@ export default async function Home() {
             <div><Image src='/Featured4.webp' alt="feature-image4" width='110' height='110'/></div>
           </div>
         </div>
-        <div className="bg-[#fae3d7] rounded-full">
+        <div className="bg-[#fae3d7] w-full rounded-full">
           <div className=" mt-[-35px]">
-            <Image src='/header.webp' alt="hero-image" width='1250' height='1200'/>
+            <Image src={Hero_Image} alt="hero-image" className=" w-[850px]"/>
           </div> 
         </div>
       </div>
