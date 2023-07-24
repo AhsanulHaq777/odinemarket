@@ -38,9 +38,9 @@ export default async function Home() {
   const productsData:IProduct[] = await getProducts();
   return (
     <>
-      <div className='flex flex-row m-auto gap-10 px-36' >
-        <div className="mt-14 w-full">
-          <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 py-2 px-5 rounded-lg font-mono text-xl font-extrabold">Sale 70%</Badge>
+      <div className='flex flex-row m-auto gap-x-20 px-36' >
+        <div className="mt-14 flex-1">
+          <Badge className="bg-blue-100 text-blue-700 py-2 px-5 rounded-lg font-mono text-xl font-extrabold">Sale 70%</Badge>
           <h1 className="text-4xl mt-10 font-extrabold lg:text-6xl tracking-wide">
             An Industrial Take on Streetwear
           </h1>
@@ -59,10 +59,10 @@ export default async function Home() {
             <div><Image src='/Featured4.webp' alt="feature-image4" width='110' height='110'/></div>
           </div>
         </div>
-        <div className="bg-[#fae3d7] w-full rounded-full">
-          <div className=" mt-[-35px]">
-            <Image src={Hero_Image} alt="hero-image" className=" w-[850px]"/>
+        <div className="bg-[#fae3d7] flex-1 rounded-full">
+          <div className=" mt-[-35px] relative">
           </div> 
+          <Image src={Hero_Image} alt="hero-image" className=" absolute h-[725px] w-[720px]"/>
         </div>
       </div>
       <div className='m-auto justify-around px-36 mt-28' >
