@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
@@ -39,7 +40,7 @@ export default async function Home() {
     <>
       <div className='flex flex-row m-auto gap-10 px-36' >
         <div className="mt-14 w-full">
-          <Button variant="secondary" className=" bg-blue-100 w-32 text-indigo-700 font-mono text-xl font-extrabold">Sale 70%</Button>
+          <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 py-2 px-5 rounded-lg font-mono text-xl font-extrabold">Sale 70%</Badge>
           <h1 className="text-4xl mt-10 font-extrabold lg:text-6xl tracking-wide">
             An Industrial Take on Streetwear
           </h1>
