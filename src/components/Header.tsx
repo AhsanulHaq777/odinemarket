@@ -24,7 +24,7 @@ export default function Header() {
         <div className='flex flex-row items-center w-96'>
           <Search/><Input type="text" className='h-[30px]' placeholder="What you looking for" />
         </div>
-        <div><Button variant="secondary" className=' rounded-full font-bold text-xl'><ShoppingCart/></Button></div>
+        <div><Button variant="secondary" className='rounded-full h-[52px] w-[52px]'><ShoppingCart/></Button></div>
     </div>
   )
 }

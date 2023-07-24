@@ -3,7 +3,12 @@ import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Image from "next/image"
 import Hero_Image from "../../public/header.webp"
+import Feature_Image1 from "../../public/Featured1.webp"
+import Feature_Image2 from "../../public/Featured2.webp"
+import Feature_Image3 from "../../public/Featured3.webp"
+import Feature_Image4 from "../../public/Featured4.webp"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 import {client} from '@/lib/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
@@ -38,7 +43,7 @@ export default async function Home() {
   const productsData:IProduct[] = await getProducts();
   return (
     <>
-      <div className='flex flex-row m-auto gap-x-20 px-36' >
+      <div className='flex flex-row m-auto gap-x-20' >
         <div className="mt-14 flex-1">
           <Badge className="bg-blue-100 text-blue-700 py-2 px-5 rounded-lg font-mono text-xl font-extrabold">Sale 70%</Badge>
           <h1 className="text-4xl mt-10 font-extrabold lg:text-6xl tracking-wide">
@@ -52,11 +57,11 @@ export default async function Home() {
               <ShoppingCart/>Start Shopping
             </button>
           </div>
-          <div className=" flex flex-row m-auto gap-7 justify-around mt-36">
-            <div><Image src='/Featured1.webp' alt="feature-image1" width='110' height='110'/></div>
-            <div><Image src='/Featured2.webp' alt="feature-image2" width='110' height='110'/></div>
-            <div><Image src='/Featured3.webp' alt="feature-image3" width='110' height='110'/></div>
-            <div><Image src='/Featured4.webp' alt="feature-image4" width='110' height='110'/></div>
+          <div className=" flex flex-row m-auto  justify-between mt-32">
+            <div><Image src={Feature_Image1} alt="feature-image1" className="feature_images"/></div>
+            <div><Image src={Feature_Image2} alt="feature-image2" className="feature_images"/></div>
+            <div><Image src={Feature_Image3} alt="feature-image3" className="feature_images"/></div>
+            <div><Image src={Feature_Image4} alt="feature-image4" className="feature_images"/></div>
           </div>
         </div>
         <div className="bg-[#fae3d7] flex-1 rounded-full">
@@ -65,7 +70,7 @@ export default async function Home() {
           <Image src={Hero_Image} alt="hero-image" className=" absolute h-[725px] w-[720px]"/>
         </div>
       </div>
-      <div className='m-auto justify-around px-36 mt-28' >
+      <div className='m-auto justify-around mt-28' >
         <div className=" text-center ">
           <span className=" text-indigo-700 font-sans text-sm font-bold tracking-widest">PROMOTIONS</span>
           <h1 className=" text-4xl font-extrabold tracking-wide mt-4">Our Promotions Events</h1>
@@ -105,19 +110,21 @@ export default async function Home() {
             </div>
         </div>
       </div>
-      <div className='m-auto justify-around px-36 mt-32'>
+      <div className='m-auto justify-around mt-32'>
         <div className=" text-center ">
           <span className=" text-indigo-700 font-sans text-sm font-bold tracking-widest">PRODUCTS</span>
           <h1 className=" text-4xl font-extrabold tracking-wide mt-4">Check What We Have</h1>
         </div>
         <div className=" flex flex-row gap-11 px-6 mt-20 mb-16">
-            {productsData.map((item)=>(
-              <div key={item._id}>
+          {productsData.map((item)=>(
+            <Link href={`/products/${item.title}`}>
+             <div key={item._id}>
                 <Image src={urlFor(item.image).url()} width='500' height='500' alt="products" />
-                {/* <Image src='https://cdn.sanity.io/images/czlfkjkf/production/ffc858fc182553bee2aaff34fe728bf07d15f2b5-278x296.png?w=700' width='600' height='600' alt="products" /> */}
-                <h2 className="text-gray-700 text-2xl font-extrabold font-mono mt-3">{item.title}</h2>
-                <p className=" text-gray-700 mt-2 font-extrabold font-mono text-2xl">${item.price}</p>
-              </div>
+                  {/* <Image src='https://cdn.sanity.io/images/czlfkjkf/production/ffc858fc182553bee2aaff34fe728bf07d15f2b5-278x296.png?w=700' width='600' height='600' alt="products" /> */}
+                  <h2 className="text-gray-700 text-2xl font-extrabold font-mono mt-3">{item.title}</h2>
+                  <p className=" text-gray-700 mt-2 font-extrabold font-mono text-2xl">${item.price}</p>
+             </div>
+            </Link>
             ))}
         </div>
       </div>
@@ -125,7 +132,7 @@ export default async function Home() {
         <div >
           <h1 className="px-36 text-[50px] tracking-normal  leading-tight  font-black font-mono ml-[795px] mt-4">Unique and Authentic Vintage Designer Jewellery</h1>
         </div>
-        <div className="flex flex-row gap-10 px-36 pt-10 pb-20 bg-[#fbfcff]">
+        <div className="flex flex-row gap-10 pt-10 pb-20 bg-[#fbfcff]">
           <div className="  w-1/2 justify-center items-center mt-5 relative">
             <div className="w-full font-extrabold text-9xl opacity-70 absolute text-[#ebecef]">Different from others</div>
             <div className=" grid grid-cols-2 gap-12 mt-4 relative">
@@ -164,7 +171,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="  m-auto justify-around mt-48 mb-56 text-center px-36 relative">
+      <div className="  m-auto justify-around mt-48 mb-56 text-center relative">
         <h2 className="ml-[350px] mt-5 font-extrabold text-9xl opacity-70 absolute text-[#ebecef]">Newsletter</h2>
         <h1 className=" text-4xl font-extrabold tracking-wide relative">Subscribe Our Newsletter</h1>
         <p className="mt-7 text-lg justify-center relative">Get the latest information and promo offers directly</p>

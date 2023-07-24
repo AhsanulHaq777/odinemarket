@@ -27,6 +27,11 @@ export const product=defineType({
             type: "image"
        }),
        defineField({
+          name: "item",
+          title: "Product Item",
+          type: "string"
+     }),
+       defineField({
           name: "category",
           title: "Product Category",
           type: "reference",
