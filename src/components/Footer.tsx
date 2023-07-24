@@ -12,9 +12,9 @@ export default function Footer(){
                     </div>
                     <p className=" text-xl tracking-normal font-mono pt-10 text-gray-600">Small, artisan label that offers a thoughtfully curated collection of high quality everyday essentials made.</p>
                     <div className="flex flex-row gap-4 mt-10">
-                        <Button className=" bg-gray-200 text-black text-xl py-6 px-3"><Twitter/></Button>
-                        <Button className=" bg-gray-200 text-black text-xl py-6 px-3"><Facebook/></Button>
-                        <Button className=" bg-gray-200 text-black text-xl py-6 px-3"><Linkedin/></Button>
+                        <Button className=" bg-gray-200 text-xl py-6 px-3"><Twitter/></Button>
+                        <Button className=" bg-gray-200 text-xl py-6 px-3"><Facebook/></Button>
+                        <Button className=" bg-gray-200 text-xl py-6 px-3"><Linkedin/></Button>
                     </div>
                 </div>
                 <div className="flex flex-col font-mono ">
