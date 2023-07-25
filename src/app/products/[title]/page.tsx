@@ -41,7 +41,7 @@ export default async function page({params}: { params : { title : string } }) {
     <>
     <div className=" mt-28 mb-36">
           {productData.map((item)=>(
-            <div className='flex flex-row gap-10'>
+            <div key={item._id} className='flex flex-row gap-10'>
               <div><Image src={urlFor(item.image).url()} width='100' height='100' alt={item.title}/></div>
               <div className='flex flex-row gap-10'>
                 <Image src={urlFor(item.image).url()} width='750' height='750' alt={item.title}/>
