@@ -31,7 +31,7 @@ interface IProduct {
 export default async function page() {
   const productsData:IProduct[] = await getProducts();
   return (
-    <div className=" flex flex-row gap-[85px] mt-20 mb-36">
+    <div className=" flex flex-row flex-wrap gap-[85px] mt-20 mb-36">
         {productsData.length > 0 ? 
           (productsData.map((item)=>(
             <Link href={`/products/${item.title}`} key={item._id}>

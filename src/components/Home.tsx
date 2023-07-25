@@ -115,7 +115,7 @@ export default async function Home() {
           <span className=" text-indigo-700 font-sans text-sm font-bold tracking-widest">PRODUCTS</span>
           <h1 className=" text-4xl font-extrabold tracking-wide mt-4">Check What We Have</h1>
         </div>
-        <div className=" flex flex-row gap-11 px-6 mt-20 mb-16">
+        <div className=" flex flex-row flex-wrap gap-11 px-6 mt-20 mb-16">
           {productsData.map((item)=>(
             <Link href={`/products/${item.title}`} key={item._id}>
              <div>
