@@ -53,9 +53,9 @@ export default async function Home() {
             Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.
           </p>
           <div className=" mt-12">
-            <button className=" bg-black justify-center items-center flex px-6 py-5 text-white font-mono text-xl font-extrabold gap-3">
+            <Button className=" bg-black hover:bg-black rounded-none justify-center items-center flex px-6 py-5 text-white font-mono text-xl font-extrabold gap-3">
               <ShoppingCart/>Start Shopping
-            </button>
+            </Button>
           </div>
           <div className=" flex flex-row m-auto  justify-between mt-32">
             <div><Image src={Feature_Image1} alt="feature-image1" className="feature_images"/></div>
