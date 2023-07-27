@@ -8,6 +8,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { groq } from 'next-sanity'
 import { ShoppingCart } from 'lucide-react'
 import ProductQuantity from '@/components/ProductQuantity'
+import AddToCart from '@/components/AddToCart'
 
 const builder = imageUrlBuilder(client)
 function urlFor(source: File | SanityImageSource) {
@@ -25,7 +26,7 @@ interface IProduct {
   title: string,
   description: string,
   price: number,
-  image: File,
+  image: File, // I should take this as type Image imported from sanity
   item: string,
   category: {
     title: string
@@ -61,9 +62,10 @@ export default async function page({params}: { params : { title : string } }) {
                     <ProductQuantity/>
                   </div>
                   <div className='flex flex-row mt-10 gap-5 items-center'>
-                    <Button className=" bg-black hover:bg-black tracking-tighter justify-center items-center rounded-none flex px-4 py-2 text-white font-mono text-lg font-semibold gap-3">
+                    <AddToCart items={item}/>
+                    {/* <Button className=" bg-black hover:bg-black tracking-tighter justify-center items-center rounded-none flex px-4 py-2 text-white font-mono text-lg font-semibold gap-3">
                       <ShoppingCart/>Add to Cart
-                    </Button>
+                    </Button> */}
                     <p className=" text-gray-700 mt-2 font-extrabold font-mono text-3xl">${item.price}.00</p>
                   </div>
                 </div>
