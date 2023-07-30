@@ -1,12 +1,10 @@
 import React from 'react'
-import Link from "next/link"
 import Image from "next/image"
 import { Button } from '@/components/ui/button'
 import {client} from '@/lib/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { groq } from 'next-sanity'
-import { ShoppingCart } from 'lucide-react'
 import ProductQuantity from '@/components/ProductQuantity'
 import AddToCart from '@/components/AddToCart'
 
@@ -63,9 +61,6 @@ export default async function page({params}: { params : { title : string } }) {
                   </div>
                   <div className='flex flex-row mt-10 gap-5 items-center'>
                     <AddToCart items={item}/>
-                    {/* <Button className=" bg-black hover:bg-black tracking-tighter justify-center items-center rounded-none flex px-4 py-2 text-white font-mono text-lg font-semibold gap-3">
-                      <ShoppingCart/>Add to Cart
-                    </Button> */}
                     <p className=" text-gray-700 mt-2 font-extrabold font-mono text-3xl">${item.price}.00</p>
                   </div>
                 </div>
@@ -74,8 +69,6 @@ export default async function page({params}: { params : { title : string } }) {
             ))
           }
     </div>
-    
     </>
-    
   )
 }
