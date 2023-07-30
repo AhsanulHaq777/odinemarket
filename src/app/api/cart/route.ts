@@ -37,7 +37,7 @@ export async function POST(request: NextRequest){
                 eq(cartTable.user_id, (user_id?.value as string))
                 )
             );
-        if (!findProduct) {
+        if (findProduct.length == 0) {
             const result = await db.insert(cartTable).values({
                 user_id: cookies().get("user_id")?.value as string,
                 product_id: req.product_id,
