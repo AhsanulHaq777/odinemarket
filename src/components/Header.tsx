@@ -24,7 +24,14 @@ export default function Header() {
         <div className='flex flex-row items-center w-96'>
           <Search/><Input type="text" className='h-[30px]' placeholder="What you looking for" />
         </div>
-        <div><Button variant="secondary" className='rounded-full h-[52px] w-[52px]'><ShoppingCart/></Button></div>
+        <div><Link href={'/cart'}>
+          <Button variant="secondary" className='rounded-full h-[52px] w-[52px]'>
+            <ShoppingCart className='flex-shrink-0 absolute h-7 w-7'/>
+            <span className='relative flex items-center justify-center ml-3 shrink-0 mb-6 w-4 h-4  rounded-full   bg-red-500 text-xs font-bold text-center text-white'>0</span>
+          </Button>
+          {/* <Button className=' relative flex items-center justify-center w-5 h-5 duration-300 rounded-full hover:shadow-xl  bg-red-500 hover:bg-white'> */}
+          {/* </Button>  */}
+          </Link></div>
     </div>
   )
 }
