@@ -80,7 +80,7 @@ export default async function page() {
                 <div >
                     {
                         cartData.data.map( async (item)=>(
-                            <div className=' pb-[60px]'>
+                            <div key={item.id} className=' pb-[60px]'>
                                 <DeleteFromCart items={item}/>
                                 <div className=' pl-[-140px]'><ProductQuantity/></div>
                             </div>
