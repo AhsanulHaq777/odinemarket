@@ -18,8 +18,7 @@ export async function GET(request: NextRequest){
             console.log((error as {message: string}).message)
             return NextResponse.json({message:"Something is fishy..."})
         }
-    }
-    
+    }  
 }
 
 export async function POST(request: NextRequest){
@@ -41,13 +40,15 @@ export async function POST(request: NextRequest){
             const result = await db.insert(cartTable).values({
                 user_id: cookies().get("user_id")?.value as string,
                 product_id: req.product_id,
-                quantity: 1
+                quantity: 1,
+                price: req.price
             }).returning();
             return NextResponse.json({result})
         }
         else{
             const result = await db.update(cartTable).set({
-                quantity: 2
+                quantity: 2,
+                price: req.price
             }).where(
                 and(
                     eq(cartTable.product_id, req.product_id),
@@ -55,10 +56,33 @@ export async function POST(request: NextRequest){
                     )
                 ).returning();
             return NextResponse.json({result})
-        }
-        
+        } 
     } catch (error) {
         console.log(error)
         return NextResponse.json({message: "You got error"})
     }
+}
+
+export async function DELETE(request: NextRequest) {
+    const req = request.nextUrl;
+    const userIDParam = req.searchParams.get("user_id") as string;
+    const productIDParam = req.searchParams.get("product_id") as string;
+    if (!userIDParam && !productIDParam) {
+        return NextResponse.json({message: "No product to delete"});
+    }
+    else{
+        try {
+            const result = await db.delete(cartTable).where(
+                and(
+                    eq(cartTable.user_id,userIDParam),
+                    eq(cartTable.product_id,productIDParam)
+                )
+            ).returning();
+            return NextResponse.json({result});
+        } catch (error) {
+            console.log((error as {message: string}).message);
+            return NextResponse.json({message:"Something is not ok..."});
+        }
+    }
+    
 }
