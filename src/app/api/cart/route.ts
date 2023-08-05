@@ -37,17 +37,23 @@ export async function POST(request: NextRequest){
                 )
             );
         if (findProduct.length == 0) {
+            req.price = req.price * req.quantity;
+            console.log("price total type: " +  typeof req.price)
+            console.log("price total : " +  req.price)
             const result = await db.insert(cartTable).values({
                 user_id: cookies().get("user_id")?.value as string,
                 product_id: req.product_id,
-                quantity: 1,
+                quantity: req.quantity,
                 price: req.price
             }).returning();
             return NextResponse.json({result})
         }
         else{
+            req.quantity += req.quantity;
+            req.price = req.price * req.quantity;
+            req.price = req.price += req.price;
             const result = await db.update(cartTable).set({
-                quantity: 2,
+                quantity: req.quantity,
                 price: req.price
             }).where(
                 and(

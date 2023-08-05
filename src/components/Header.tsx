@@ -1,11 +1,17 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
 import { Input } from "@/components/ui/input"
 import { Search, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 
 export default function Header() {
+  var cartValue = useSelector(
+    (state:RootState)=>state.cart.totalQuantity
+);
   return (
     <div className='flex justify-around items-center mt-9 px-20 mb-20'> 
         <div>
@@ -26,7 +32,7 @@ export default function Header() {
           <Link href={'/cart'}>
             <Button variant="secondary" className='rounded-full h-[52px] w-[52px]'>
               <ShoppingCart className='flex-shrink-0 absolute h-7 w-7'/>
-              <span className='relative flex items-center justify-center ml-3 shrink-0 mb-6 w-4 h-4  rounded-full   bg-red-500 text-xs font-bold text-center text-white'>0</span>
+              <span className='relative flex items-center justify-center ml-3 shrink-0 mb-6 w-4 h-4  rounded-full   bg-red-500 text-xs font-bold text-center text-white'>{cartValue}</span>
             </Button>
           </Link></div>
     </div>

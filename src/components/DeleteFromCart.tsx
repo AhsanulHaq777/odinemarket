@@ -5,9 +5,16 @@ import { Trash2Icon } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { CARTTABLE } from '@/lib/drizzel'
 import { Button } from './ui/button'
+import {useDispatch} from 'react-redux'
+import {cartActions} from '@/slice/cartSlice'
 
 
 export default function DeleteFromCart({items}: {items : CARTTABLE}) { 
+    const dispatch = useDispatch();
+  const ClearItems = ()=>{
+    dispatch(cartActions.removeFromCart({quantity: items.quantity}))
+    DeleteProduct(items.user_id,items.product_id)
+  }
     const router = useRouter();
         async function DeleteProduct(userID: string,productID: string){
             try {
@@ -20,7 +27,7 @@ export default function DeleteFromCart({items}: {items : CARTTABLE}) {
   return (
     <div className=' mb-40'>
         <Button className=' text-black hover:bg-white bg-white'>
-            <Trash2Icon className='h-7 w-7' onClick={() => DeleteProduct(items.user_id,items.product_id)}/>
+            <Trash2Icon className='h-7 w-7' onClick={ClearItems}/>
         </Button>
     </div>
   )
