@@ -23,13 +23,20 @@ interface IProduct {
   //get product data based on current user from postgress database
 const showCart =async () => {
     const user_id = cookies().get("user_id")?.value;
-    try {
+    // try {
+        
         const res = await fetch(`http://localhost:3000/api/cart?user_id=${user_id}`,{method: "GET"});
         const result = await res.json();
-        return result;
-    } catch (error) {
-        console.log(error)
-    }
+        if(res.ok){
+            return result;
+        }else{
+            throw new Error('Something went wrong');
+        }
+        
+    // } catch (error) {
+    //     console.log("error from cart page " + error)
+    // }
+    
 }
 
 // Get products details sanity
