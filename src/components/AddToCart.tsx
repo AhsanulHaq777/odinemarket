@@ -1,5 +1,6 @@
 "use client"
 import { Button } from './ui/button'
+import {useRouter} from "next/navigation"
 import { ShoppingCart } from 'lucide-react'
 
 interface IProduct {
@@ -15,13 +16,16 @@ interface IProduct {
   }
 
 export default function AddToCart({items}: {items : IProduct}){
+  const router = useRouter();
     const handleAddToCart =async () => {
         const res = await fetch("/api/cart",{
             method: "POST",
             body: JSON.stringify({
-                product_id: items._id
+                product_id: items._id,
+                price: items.price
             })
         })
+        router.refresh();
         const result = await res.json();
     }
     return(
