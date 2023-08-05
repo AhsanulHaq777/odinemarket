@@ -28,7 +28,7 @@ const showCart =async () => {
         const result = await res.json();
         return result;
     } catch (error) {
-        console.log((error as {message: string}).message)
+        console.log(error)
     }
 }
 
