@@ -9,6 +9,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import DeleteFromCart from '@/components/DeleteFromCart';
 import ProductQuantity from '@/components/ProductQuantity';
 import { Button } from '@/components/ui/button';
+import Checkout from '@/components/Checkout';
 
 
 interface IProduct {
@@ -111,9 +112,10 @@ export default async function page() {
                             <p className=" text-slate-800 font-light text-xl tracking-tighter font-mono">$ 175</p>
                         </div>
                         <div className=' flex items-center justify-center mt-8'>
-                            <Button className=" bg-black hover:bg-black tracking-tighter justify-center items-center rounded-none w-full flex py-2 text-white font-mono text-lg font-semibold gap-3">
+                            {/* <Button className=" bg-black hover:bg-black tracking-tighter justify-center items-center rounded-none w-full flex py-2 text-white font-mono text-lg font-semibold gap-3">
                                 Process to Checkout
-                            </Button>
+                            </Button> */}
+                            <Checkout />
                         </div>
                     </div>
                 </div>
