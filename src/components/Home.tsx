@@ -8,39 +8,9 @@ import Feature_Image2 from "../../public/Featured2.webp"
 import Feature_Image3 from "../../public/Featured3.webp"
 import Feature_Image4 from "../../public/Featured4.webp"
 import { Input } from "@/components/ui/input"
-import Link from "next/link"
-import {client} from '@/lib/sanityClient'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from "@sanity/image-url/lib/types/types"
-
-// to build a url of an image data fetched from sanity
-const builder = imageUrlBuilder(client)
-function urlFor(source: File | SanityImageSource) {
-  return builder.image(source)
-}
-// to fetch data from sanity
-const getProducts = async()=>{
-  const response = await client.fetch(`*[_type=='product']{_id,title,description,price,image,category -> {title}}`);
-  return response;
-}
-
-// make types for the data fetched from sanity
-interface IProduct {
-  _id: string,
-  title: string,
-  description: string,
-  price: number,
-  image: File,
-  category: {
-    title: string
-  }
-}
+import SliderImages from "./SliderImages"
 
 export default async function Home() {
-  // const testdata  = await getProducts()
-  // const testimg = urlFor(testdata[0].image).width(700).url()
-  // console.log(testimg)
-  const productsData:IProduct[] = await getProducts();
   return (
     <>
       <div className='flex flex-row m-auto gap-x-20' >
@@ -115,18 +85,7 @@ export default async function Home() {
           <span className=" text-indigo-700 font-sans text-sm font-bold tracking-widest">PRODUCTS</span>
           <h1 className=" text-4xl font-extrabold tracking-wide mt-4">Check What We Have</h1>
         </div>
-        <div className=" flex flex-row flex-wrap gap-11 px-6 mt-20 mb-16">
-          {productsData.map((item)=>(
-            <Link href={`/products/${item.title}`} key={item._id}>
-             <div>
-                <Image src={urlFor(item.image).url()} width='500' height='500' alt={item.title} />
-                  {/* <Image src='https://cdn.sanity.io/images/czlfkjkf/production/ffc858fc182553bee2aaff34fe728bf07d15f2b5-278x296.png?w=700' width='600' height='600' alt="products" /> */}
-                  <h2 className="text-gray-700 text-2xl font-extrabold font-mono mt-3">{item.title}</h2>
-                  <p className=" text-gray-700 mt-2 font-extrabold font-mono text-2xl">${item.price}</p>
-             </div>
-            </Link>
-            ))}
-        </div>
+        <SliderImages/>
       </div>
       <div className='m-auto justify-around mt-32'>
         <div >
