@@ -5,7 +5,7 @@ import {client} from '@/lib/sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { groq } from 'next-sanity'
-import ProductQuantity from '@/components/ProductQuantity'
+// import ProductQuantity from '@/components/ProductQuantity'
 import AddToCart from '@/components/AddToCart'
 
 const builder = imageUrlBuilder(client)
@@ -18,24 +18,27 @@ const getProductDetail = async(productTitle: string)=>{
   return response;
 }
 
+
 // make types for the data fetched from sanity
-interface IProduct {
+interface ISanityProduct {
   _id: string,
   title: string,
   description: string,
   price: number,
   image: File, // I should take this as type Image imported from sanity
   item: string,
+  quantity: number,
   category: {
     title: string
   }
 }
 
+
 const sizes = ['XS', 'S', 'M', 'L', 'XL']
 
 export default async function page({params}: { params : { title : string } }) {
   const newParam = params.title.replace(/%20/gi, " "); 
-  const productData: IProduct[] = await getProductDetail(newParam);
+  const productData: ISanityProduct[] = await getProductDetail(newParam);
   return (
     <>
     <div className=" mt-28 mb-36">
@@ -55,14 +58,12 @@ export default async function page({params}: { params : { title : string } }) {
                       </Button> 
                     ))}
                   </div>
-                  <div className='flex mt-10 items-center gap-x-8'>
-                    <h3 className=' font-semibold text-xl'>Quantity:</h3>
-                    <ProductQuantity/>
-                  </div>
-                  <div className='flex flex-row mt-10 gap-5 items-center'>
-                    <AddToCart items={item}/>
-                    <p className=" text-gray-700 mt-2 font-extrabold font-mono text-3xl">${item.price}.00</p>
-                  </div>
+                    <div className='flex flex-row items-center'>
+                      {/* <h3 className=' font-semibold text-xl'>Quantity:</h3> */}
+                      {/* <ProductQuantity/> */}
+                      <AddToCart items={item} qty={1}/>
+                      <p className="mt-28 text-gray-700 font-extrabold font-mono text-3xl">${item.price}.00</p>
+                    </div>
                 </div>
               </div>
             </div>

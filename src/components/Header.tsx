@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Search, ShoppingCart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store/store'
 
 export default function Header() {

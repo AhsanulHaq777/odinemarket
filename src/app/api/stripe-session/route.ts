@@ -6,7 +6,7 @@ const stripe = new Stripe(key,{apiVersion: "2022-11-15"})
 
 export async function POST(request: NextRequest){
     const body = await request.json();
-    console.log(body)
+    // console.log(body)
     try {
         if(body.length > 0){
             // Create Checkout Sessions from body params.
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest){
                         price_data:{
                             currency: 'pkr',
                             product_data: {
-                                name: item.name
+                                name: item.title,
                             },
                             unit_amount: item.price * 100,
                         },

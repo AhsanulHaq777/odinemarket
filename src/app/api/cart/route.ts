@@ -38,8 +38,8 @@ export async function POST(request: NextRequest){
             );
         if (findProduct.length == 0) {
             req.price = req.price * req.quantity;
-            console.log("price total type: " +  typeof req.price)
-            console.log("price total : " +  req.price)
+            // console.log("price total type: " +  typeof req.price)
+            // console.log("price total : " +  req.price)
             const result = await db.insert(cartTable).values({
                 user_id: cookies().get("user_id")?.value as string,
                 product_id: req.product_id,
@@ -48,10 +48,10 @@ export async function POST(request: NextRequest){
             }).returning();
             return NextResponse.json({result})
         }
-        else{
-            req.quantity += req.quantity;
-            req.price = req.price * req.quantity;
-            req.price = req.price += req.price;
+        else{ //this works as a PUT
+            // req.quantity += req.quantity;
+            // req.price = req.price * req.quantity;
+            // req.price = req.price += req.price;
             const result = await db.update(cartTable).set({
                 quantity: req.quantity,
                 price: req.price
@@ -71,16 +71,17 @@ export async function POST(request: NextRequest){
 
 export async function DELETE(request: NextRequest) {
     const req = request.nextUrl;
-    const userIDParam = req.searchParams.get("user_id") as string;
+    const user_id = cookies().get("user_id")
+    // const userIDParam = req.searchParams.get("user_id") as string;
     const productIDParam = req.searchParams.get("product_id") as string;
-    if (!userIDParam && !productIDParam) {
+    if (!user_id && !productIDParam) {
         return NextResponse.json({message: "No product to delete"});
     }
     else{
         try {
             const result = await db.delete(cartTable).where(
                 and(
-                    eq(cartTable.user_id,userIDParam),
+                    eq(cartTable.user_id,(user_id?.value as string)),
                     eq(cartTable.product_id,productIDParam)
                 )
             ).returning();
